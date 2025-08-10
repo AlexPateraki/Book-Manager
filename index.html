@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Manager</title>
+    <style>
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        .modal-content {
+            background-color: #fff;
+            padding: 20px;
+            margin: 15% auto;
+            width: 50%;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>My Book Library</h1>
+    <button onclick="addBook()">Add Book</button>
+    <button onclick="viewAllBooks()">View All My Books</button>
+    <button onclick="deleteBook()">Delete a Book</button>
+
+    <div>
+        <label for="searchInput">Search by Title or Author:</label>
+        <input type="text" id="searchInput" oninput="viewAllBooks()" placeholder="Search...">
+    </div>
+    
+    <div>
+        <label for="filterSelect">Filter by Status:</label>
+        <select id="filterSelect" onchange="viewAllBooks()">
+            <option value="">All</option>
+            <option value="read">Read</option>
+            <option value="unread">Unread</option>
+        </select>
+    </div>
+
+    <div>
+        <label for="sortSelect">Sort by:</label>
+        <select id="sortSelect" onchange="viewAllBooks()">
+            <option value="">None</option>
+            <option value="title">Alphabetically by Title</option>
+            <option value="author">Alphabetically by Author</option>
+            <option value="yearAsc">Year (Ascending)</option>
+            <option value="yearDesc">Year (Descending)</option>
+        </select>
+    </div>
+
+    <div id="book-list"></div> 
+
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <h2>Edit Book</h2>
+            <form id="editForm">
+                <label for="title">Title:</label><br>
+                <input type="text" id="editTitle"><br><br>
+                <label for="author">Author:</label><br>
+                <input type="text" id="editAuthor"><br><br>
+                <label for="year">Year:</label><br>
+                <input type="text" id="editYear"><br><br>
+                <label for="read">Read:</label><br>
+                <input type="text" id="editRead"><br><br>
+                <button type="button" onclick="saveChanges()">Save</button>
+                <button type="button" onclick="closeModal()">Cancel</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="bookList.js"></script>
+</body>
+</html>
